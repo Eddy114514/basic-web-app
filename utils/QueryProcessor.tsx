@@ -11,6 +11,19 @@ export default function QueryProcessor(query: string): string {
     return "changbax";
   }
 
+
+  if (query.toLowerCase().includes("which of the following numbers is the largest")){
+    let str = query.toLowerCase()
+    let matches = str.match(/\d+/g);
+    if (matches !== null){
+      let intArray = matches.map(Number);
+      return Math.max(...intArray).toString();
+    } else{
+      return "Na"
+    }
+    
+  }
+
   if (query.toLowerCase().includes("what is your andrew id?")) {
     return "changbax";
   }
