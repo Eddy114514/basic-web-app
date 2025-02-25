@@ -68,6 +68,64 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("minus")) {
+    let str = query.toLowerCase();
+    let matches = str.match(/\d+/g);  // Extract all numbers
+    if (matches && matches.length === 2) {
+      let num1 = Number(matches[0]);
+      let num2 = Number(matches[1]);
+      let difference = num1 - num2;
+      console.log(difference);  // Log the result
+      return difference.toString();  // Return the result as a string
+    }
+  }
+
+  if (query.toLowerCase().includes("which of the following numbers are primes")) {
+    let str = query.toLowerCase();
+    let matches = str.match(/\d+/g);
+    if (matches) {
+      let intArray = matches.map(Number);
+
+      // Helper function to check if a number is prime
+      const isPrime = (num) => {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      };
+
+      let primes = intArray.filter(isPrime);
+
+      console.log(primes);  // Log the results
+      return primes.join(', ');  // Return as a string for easy readability
+    }
+  }
+
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("to the power of")) {
+    let str = query.toLowerCase();
+    let matches = str.match(/\d+/g);  // Extract all numbers
+    if (matches && matches.length === 2) {
+      let base = Number(matches[0]);
+      let exponent = Number(matches[1]);
+      let result = Math.pow(base, exponent);
+      console.log(result);  // Log the result
+      return result.toString();  // Return the result as a string
+    }
+  }
+
+  // Case 2: Addition of multiple numbers (62 + 64 + 13)
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("plus")) {
+    let str = query.toLowerCase();
+    let matches = str.match(/\d+/g);  // Extract all numbers
+    if (matches) {
+      let intArray = matches.map(Number);
+      let sum = intArray.reduce((acc, num) => acc + num, 0);  // Sum up all numbers
+      console.log(sum);  // Log the result
+      return sum.toString();  // Return the result as a string
+    }
+  }
+
   if (query.toLowerCase().includes("what is your andrew id?")) {
     return "changbax";
   }
