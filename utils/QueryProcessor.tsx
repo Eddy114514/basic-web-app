@@ -85,22 +85,23 @@ export default function QueryProcessor(query: string): string {
     let matches = str.match(/\d+/g);
     if (matches) {
       let intArray = matches.map(Number);
-
+  
       // Helper function to check if a number is prime
-      const isPrime = (num) => {
+      const isPrime = (num: number): boolean => {  // Explicitly declare 'num' as a 'number' and return 'boolean'
         if (num <= 1) return false;
         for (let i = 2; i <= Math.sqrt(num); i++) {
           if (num % i === 0) return false;
         }
         return true;
       };
-
+  
       let primes = intArray.filter(isPrime);
-
+  
       console.log(primes);  // Log the results
       return primes.join(', ');  // Return as a string for easy readability
     }
   }
+  
 
   if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("to the power of")) {
     let str = query.toLowerCase();
